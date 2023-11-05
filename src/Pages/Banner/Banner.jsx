@@ -1,11 +1,4 @@
 import React from 'react';
-// import { Carousel } from "flowbite";
-// import type {
-//   CarouselItem,
-//   CarouselOptions,
-//   CarouselInterface,
-// } from "flowbite";
-
 
 const Banner = () => {
     

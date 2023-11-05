@@ -27,7 +27,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-white fixed w-full z-20 top-0 left-0 border-b border-gray-200">
+    <nav className="bg-gray-100 fixed w-full z-20 top-0 left-0 border-b shadow-md">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <Link to="/" className="flex items-center">
           <img src="logo.png" className="h-8 mr-3" alt="Flowbite Logo" />
@@ -93,7 +93,7 @@ const Navbar = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink to="#" className="text-gray-700 hover:text-[#FF444A]">
+              <NavLink to="/addFood" className="text-gray-700 hover:text-[#FF444A]">
                 Add Food
               </NavLink>
             </li>
@@ -110,7 +110,7 @@ const Navbar = () => {
                       
             <li className="ml-28">
               <NavLink
-                to="/register"
+                to="/login"
                 className="text-gray-700 hover:text-[#FF444A]"
               >
                 Login
@@ -121,7 +121,7 @@ const Navbar = () => {
                 to="/register"
                 className="text-gray-700 hover:text-[#FF444A]"
               >
-                Logout
+                Register
               </NavLink>
             </li>
             {/* {user ? (
