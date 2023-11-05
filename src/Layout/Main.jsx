@@ -7,7 +7,10 @@ const Main = () => {
     return (
         <div>
             <Navbar></Navbar>
+            <div className="mt-20 max-w-7xl mx-auto">
+
             <Outlet></Outlet>
+            </div>
             <Footer></Footer>
         </div>
     );
