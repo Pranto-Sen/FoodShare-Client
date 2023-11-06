@@ -1,23 +1,25 @@
 import React, { useContext, useState } from "react";
 // import google from "../images/google.png";
 import { FcGoogle } from "react-icons/fc";
-// import { AuthContext } from "./Providers/AuthProvider";
-// import Swal from "sweetalert2";
-// import { updateProfile } from "firebase/auth";
+
+ import Swal from "sweetalert2";
+import { updateProfile } from "firebase/auth";
 import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../Providers/AuthProvider";
 
 const Register = () => {
   const [registerError, setRegisterError] = useState("");
   const [registerSuccess, setRegisterSuccess] = useState("");
 
-//   const { createUser, googleLogin } = useContext(AuthContext);
+  const { createUser, googleLogin } = useContext(AuthContext);
   const navigate = useNavigate();
   const handleRegister = (e) => {
     e.preventDefault();
     const name = e.target.name.value;
     const email = e.target.email.value;
     const password = e.target.password.value;
-    // console.log(name, email, password);
+    const photourl = e.target.photourl.value;
+    console.log(name, email, password, photourl);
     setRegisterError("");
     setRegisterSuccess("");
 
@@ -33,10 +35,13 @@ const Register = () => {
 
     createUser(email, password)
       .then((result) => {
+        console.log(result.user);
+        // console.log("ch", name, photourl);
         // console.log(result.user);
         updateProfile(result.user, {
+          
           displayName: name,
-          photoURL: "https://i.ibb.co/FgrXW5p/profile-3135715.png",
+          photoURL: photourl,
         });
         Swal.fire({
           text: "Register Successfully",
@@ -74,7 +79,7 @@ const Register = () => {
           class="bg-white w-full md:max-w-md lg:max-w-full md:mx-auto md:w-1/2 h-screen px-6 lg:px-16 xl:px-12
         flex items-center justify-center"
         >
-          <div class="bg-blue-300 w-full h-100  mb-20 px-8 py-8 shadow-2xl rounded-xl">
+          <div class="bg-blue-300 w-full h-100  mb-20 px-8 py-4 shadow-2xl rounded-xl">
             <h1 class="text-xl md:text-3xl font-semibold leading-tight text-center">
               Register to your account
             </h1>
@@ -104,7 +109,18 @@ const Register = () => {
                   autocomplete
                 ></input>
               </div>
-
+              <div class="mt-4">
+                <label class="block text-gray-700">Photo URL</label>
+                <input
+                  type="text"
+                  name="photourl"
+                  id=""
+                  placeholder="Enter Your Photo URL"
+                  class="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none"
+                  autofocus
+                  autocomplete
+                ></input>
+              </div>
               <div class="mt-4">
                 <label class="block text-gray-700">Password</label>
                 <input
@@ -116,6 +132,7 @@ const Register = () => {
                 focus:bg-white focus:outline-none"
                 ></input>
               </div>
+
               {registerError && <p className="text-red-700">{registerError}</p>}
 
               <button

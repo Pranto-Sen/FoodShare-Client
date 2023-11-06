@@ -1,37 +1,54 @@
-import React from "react";
-// import Swal from "sweetalert2";
+import React, { useContext } from "react";
+import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
-
+import { AuthContext } from "../../Providers/AuthProvider";
+ 
 const AddFood = () => {
+  const { user} = useContext(AuthContext);
   const navigate = useNavigate();
   const handleAddFood = (e) => {
     e.preventDefault();
-    const name = e.target.name.value;
-    const brand = e.target.brand.value;
-    const type = e.target.type.value;
-    const price = e.target.price.value;
+    const foodname = e.target.foodname.value;
+    const foodquantity = e.target.foodquantity.value;
+    const pickuplocation = e.target.pickuplocation.value;
+    const expiredtime = e.target.expiredtime.value;
     const image = e.target.image.value;
-    const description = e.target.description.value;
-    const rating = e.target.rating.value;
+    const status = e.target.status.value;
+    const notes = e.target.notes.value;
+    const donorphoto = user.photoURL;
+    const donorname = user.displayName;
+      const donoremail =user.email;
 
-    const addProduct = { name, brand, type, price, image, description, rating };
-    // console.log(data);
+      // const imageq = e.target.image.value;
+      // const statusq = e.target.status.value;
+      // const rating = e.target.rating.value;
 
-    fetch(
-      "https://technology-and-electronics-server-jciw16uv3.vercel.app/addProduct",
-      {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(addProduct),
-      }
-    )
+    const addFood = {
+      foodname,
+      foodquantity,
+      pickuplocation,
+      expiredtime,
+      image,
+      status,
+      notes,
+      donorphoto,
+      donorname,
+      donoremail,
+    };
+    console.log(addFood);
+
+    fetch("http://localhost:5000/addFood", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(addFood),
+    })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
         Swal.fire({
-          text: "Product added Successfully",
+          text: "Food added Successfully",
           icon: "success",
           confirmButtonText: "Done",
         });
@@ -46,6 +63,23 @@ const AddFood = () => {
         className="bg-blue-300 shadow-md px-8 py-8 sm:py-6 lg:py-10 mb-4 rounded-lg"
       >
         {/* <!-- food name and quantity (2 columns on large screens) --> */}
+        <div className="mb-4 ">
+          <h2 className="text-2xl font-bold">Donor Info</h2>
+          <div className=" flex pt-4 text-xl font-semibold">
+            <img
+              src={
+                user.photoURL
+                  ? user.photoURL
+                  : "https://i.ibb.co/5GGZtst/360-F-483909569-OI4-LKNe-Fg-Hwvv-Vju60fej-Ld9gj43d-Icd.jpg"
+              }
+              className="w-6 h-6 mr-2 rounded-lg"
+            ></img>
+            <p>{user.displayName}</p>
+            <p className="pl-8">Email: {user.email}</p>
+          </div>
+        </div>
+
+        <h2 className="text-2xl font-bold py-4">Food Info</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="mb-4">
             <label
@@ -136,7 +170,7 @@ const AddFood = () => {
             </label>
             <input
               className="w-full py-2 px-3 font-semibold text-green-600 leading-tight border rounded focus:outline-none focus:shadow-outline"
-              name="image"
+              name="status"
               type="text"
               defaultValue="Available"
             />

@@ -1,13 +1,14 @@
 // import React from "react";
 import React, { useContext, useState } from "react";
-// import { AuthContext } from "./Providers/AuthProvider";
+
 import { useNavigate, useLocation, Link } from "react-router-dom";
-// import Swal from "sweetalert2";
+ import Swal from "sweetalert2";
+import { AuthContext } from "../../Providers/AuthProvider";
 
 const Login = () => {
   const [loginError, setLoginError] = useState("");
   const [loginSuccess, setLoginSuccess] = useState("");
-//   const { signIn } = useContext(AuthContext);
+  const { signIn } = useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -15,7 +16,7 @@ const Login = () => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
-    // console.log(email, password);
+     console.log(email, password);
 
     setLoginError("");
     signIn(email, password)

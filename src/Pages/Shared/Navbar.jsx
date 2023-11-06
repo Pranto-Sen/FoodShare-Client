@@ -17,9 +17,10 @@ import React, { useContext, useState } from "react";
 // import logo from "../images/logo.png";
 // import { AuthContext } from "./Providers/AuthProvider";
 import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../../Providers/AuthProvider";
 
 const Navbar = () => {
-//   const { user, logOut, isRegister } = useContext(AuthContext);
+   const { user, logOut, isRegister } = useContext(AuthContext);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const handleSignOut = () => {
@@ -93,7 +94,10 @@ const Navbar = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/addFood" className="text-gray-700 hover:text-[#FF444A]">
+              <NavLink
+                to="/addFood"
+                className="text-gray-700 hover:text-[#FF444A]"
+              >
                 Add Food
               </NavLink>
             </li>
@@ -106,46 +110,56 @@ const Navbar = () => {
               <NavLink to="#" className="text-gray-700 hover:text-[#FF444A]">
                 Food Request
               </NavLink>
-                      </li>
-                      
-            <li className="ml-28">
+            </li>
+
+            {/* <li className="ml-28">
               <NavLink
                 to="/login"
                 className="text-gray-700 hover:text-[#FF444A]"
               >
                 Login
               </NavLink>
-            </li>
-            <li>
+            </li> */}
+            {/* <li>
               <NavLink
                 to="/register"
                 className="text-gray-700 hover:text-[#FF444A]"
               >
                 Register
               </NavLink>
-            </li>
-            {/* {user ? (
+            </li> */}
+            {user ? (
               <button onClick={handleSignOut}>Logout</button>
             ) : (
-              <li>
-                <NavLink
-                  to="/login"
-                  className="text-gray-700 hover:text-[#FF444A]"
-                >
-                  Login
-                </NavLink>
-              </li>
+              <div className="flex ">
+                <li className="pr-4">
+                  <NavLink
+                    to="/login"
+                    className="text-gray-700 hover:text-[#FF444A]"
+                  >
+                    Login
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/register"
+                    className="text-gray-700 hover:text-[#FF444A]"
+                  >
+                    Register
+                  </NavLink>
+                </li>
+              </div>
             )}
             {user && (
               <div className="flex items-center">
                 <img
-                  src={user.photoURL}
+                  src={user.photoURL?user.photoURL: 'https://i.ibb.co/5GGZtst/360-F-483909569-OI4-LKNe-Fg-Hwvv-Vju60fej-Ld9gj43d-Icd.jpg'}
                   className="w-6 h-6 mr-2"
                   alt={user.displayName}
                 />
                 <p>{user.displayName}</p>
               </div>
-            )} */}
+            )}
           </ul>
         </div>
       </div>
