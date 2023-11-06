@@ -1,7 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const FoodCard = ({ food }) => {
     const {
+        _id,
       foodname,
       foodquantity,
       pickuplocation,
@@ -36,7 +38,7 @@ const FoodCard = ({ food }) => {
                 src={donorphoto}
                 alt="Donator Image"
               ></img>
-              <span className='font-semibold'>{donorname}</span>
+              <span className="font-semibold">{donorname}</span>
             </div>
 
             {/* <!-- Food Quantity --> */}
@@ -55,17 +57,17 @@ const FoodCard = ({ food }) => {
             </p>
 
             {/* <!-- Additional Notes --> */}
-            <p class="text-gray-700 text-base mb-2">
-              Notes: {notes}.
-            </p>
+            <p class="text-gray-700 text-base mb-6">Notes: {notes}.</p>
 
             {/* <!-- View Detail Button --> */}
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 mt-4 rounded">
+            <Link
+              to={`/food/${_id}`}
+              class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 mt-4 rounded"
+            >
               View Details
-            </button>
+            </Link>
           </div>
-            </div>
-           
+        </div>
       </div>
     );
 };
