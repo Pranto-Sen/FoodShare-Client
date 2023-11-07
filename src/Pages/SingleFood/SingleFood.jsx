@@ -1,8 +1,11 @@
 import React, { useContext, useState } from "react";
 import { Link, useLoaderData, useParams } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const SingleFood = () => {
+   const navigate = useNavigate();
   const items = useLoaderData();
   const { user, logOut } = useContext(AuthContext);
   const {
@@ -18,6 +21,49 @@ const SingleFood = () => {
     donorname,
     donoremail,
   } = items;
+
+  const handleRequest = (e) => {
+    e.preventDefault();
+     const additionalNotes = e.target.notes.value;
+     const donationmoney = e.target.donationmoney.value;
+    const useremail = user.email;
+    let reqDate = new Date().toLocaleString();
+
+    const addRequestFood = {
+      foodname,
+      image,
+      _id,
+      donoremail,
+      donorname,
+      donorphoto,
+      useremail,
+      reqDate,
+      pickuplocation,
+      expiredtime,
+      additionalNotes,
+      donationmoney,
+    };
+    console.log(addRequestFood);
+
+    fetch("http://localhost:5000/requestFood", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(addRequestFood),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        
+        navigate("/");
+        Swal.fire({
+          text: "Food Request Successfully",
+          icon: "success",
+          confirmButtonText: "Done",
+        });
+      });
+  }
 
   return (
     <div className="flex justify-center items-center">
@@ -59,20 +105,24 @@ const SingleFood = () => {
           {/* <!-- Additional Notes --> */}
           <p class="text-gray-700 text-base mb-6">Notes: {notes}.</p>
 
-         
-
-          {/* Modal */}
+          {/* Modal open when click request button*/}
           <button
             class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4  rounded"
             onClick={() => document.getElementById("my_modal_5").showModal()}
           >
             Request
           </button>
+
+          {/* modal */}
           <dialog
             id="my_modal_5"
             className="modal modal-bottom sm:modal-middle "
           >
-            <div className="modal-box bg-blue-300 h-full">
+            {/* <form></form> */}
+            <form
+              onSubmit={handleRequest}
+              className="modal-box bg-blue-300 h-full"
+            >
               {/* <div class="w-full bg-blue-100 rounded overflow-hidden shadow-lg mb-8 mr-8  "> */}
               {/* <!-- Food Image --> */}
               <img
@@ -113,7 +163,7 @@ const SingleFood = () => {
                 <p class="text-gray-700 text-base mb-2">Food ID: {_id}</p>
                 <h2 className="text-xl font-semibold mt-2">User Info</h2>
                 <p class="text-gray-700 font-semibold my-2">
-                  Email: {user?user.email:"no user login"}
+                  Email: {user ? user.email : "no user login"}
                 </p>
                 {/* <!-- Short Description --> */}
                 <div className="mb-4">
@@ -147,7 +197,7 @@ const SingleFood = () => {
                   Request
                 </button>
               </div>
-            </div>
+            </form>
             <div className="modal-action">
               <form method="dialog">
                 {/* if there is a button in form, it will close the modal */}
