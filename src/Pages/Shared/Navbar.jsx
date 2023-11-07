@@ -31,7 +31,11 @@ const Navbar = () => {
     <nav className="bg-gray-100 fixed w-full z-20 top-0 left-0 border-b shadow-md">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <Link to="/" className="flex items-center">
-          <img src="logo.png" className="h-8 mr-3" alt="Flowbite Logo" />
+          <img
+            src="https://i.ibb.co/Qvjm3Y9/logo.png"
+            className="h-8 mr-3"
+            alt="Flowbite Logo"
+          />
           <span className="self-center text-4xl font-bold whitespace-nowrap">
             FoodShare
           </span>
@@ -105,7 +109,10 @@ const Navbar = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink to="#" className="text-gray-700 hover:text-[#FF444A]">
+              <NavLink
+                to="/manageFood"
+                className="text-gray-700 hover:text-[#FF444A]"
+              >
                 Manage Food
               </NavLink>
             </li>

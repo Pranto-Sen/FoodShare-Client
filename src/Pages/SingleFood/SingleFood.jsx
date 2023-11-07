@@ -98,7 +98,7 @@ const SingleFood = () => {
           <p class="text-gray-700 text-base mb-2">
             Served at {foodquantity} People
           </p>
-
+          <p>{status}</p>
           {/* <!-- Expired Date/Time --> */}
           <p class="text-gray-700 text-base mb-2">Expires: {expiredtime} Hr</p>
 

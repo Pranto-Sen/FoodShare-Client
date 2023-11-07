@@ -60,7 +60,10 @@ const AvailableFoodCard = ({ item }) => {
             <p class="text-gray-700 text-base mb-6">Notes: {notes}.</p>
 
             {/* <!-- View Detail Button --> */}
-            <Link to={`/food/${_id}`} class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4  rounded">
+            <Link
+              to={`/foodDetails/${_id}`}
+              class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4  rounded"
+            >
               View Details
             </Link>
           </div>
