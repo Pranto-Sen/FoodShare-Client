@@ -26,7 +26,10 @@ const SingleFood = () => {
     e.preventDefault();
      const additionalNotes = e.target.notes.value;
      const donationmoney = e.target.donationmoney.value;
-    const useremail = user.email;
+    const requesterEmail = user.email;
+    const requesterName = user.displayName;
+    const requesterPhoto = user.photoURL;
+    const status = "Pending";
     let reqDate = new Date().toLocaleString();
 
     const addRequestFood = {
@@ -36,7 +39,10 @@ const SingleFood = () => {
       donoremail,
       donorname,
       donorphoto,
-      useremail,
+      requesterName,
+      requesterEmail,
+      requesterPhoto,
+      status,
       reqDate,
       pickuplocation,
       expiredtime,
@@ -98,7 +104,10 @@ const SingleFood = () => {
           <p class="text-gray-700 text-base mb-2">
             Served at {foodquantity} People
           </p>
-          <p>{status}</p>
+          <div class="text-gray-700 text-base mb-2 flex ">
+            Status : <div className={`font-semibold ml-2 text-green-600 ${status === "Pending" ? "text-red-600":""}`}>{status}</div>{" "}
+          </div>
+
           {/* <!-- Expired Date/Time --> */}
           <p class="text-gray-700 text-base mb-2">Expires: {expiredtime} Hr</p>
 
@@ -107,7 +116,10 @@ const SingleFood = () => {
 
           {/* Modal open when click request button*/}
           <button
-            class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4  rounded"
+            className={`bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded ${
+              status === "Pending" ? "pointer-events-none opacity-50" : ""
+            }`}
+            // class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4  rounded"
             onClick={() => document.getElementById("my_modal_5").showModal()}
           >
             Request
@@ -191,8 +203,11 @@ const SingleFood = () => {
                   ></input>
                 </div>
                 <button
+                  className={`bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded ${
+                    status === "Pending" ? "pointer-events-none opacity-50" : ""
+                  }`}
                   // to={`/food/${_id}`}
-                  class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4  rounded"
+                  // class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4  rounded"
                 >
                   Request
                 </button>
