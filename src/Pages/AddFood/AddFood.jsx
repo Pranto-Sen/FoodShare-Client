@@ -17,7 +17,8 @@ const AddFood = () => {
     const notes = e.target.notes.value;
     const donorphoto = user.photoURL;
     const donorname = user.displayName;
-      const donoremail =user.email;
+    const donoremail = user.email;
+    const foodId = Math.floor(Math.random() * Date.now()).toString(16);
 
       // const imageq = e.target.image.value;
       // const statusq = e.target.status.value;
@@ -34,6 +35,7 @@ const AddFood = () => {
       donorphoto,
       donorname,
       donoremail,
+      foodId,
     };
     console.log(addFood);
 

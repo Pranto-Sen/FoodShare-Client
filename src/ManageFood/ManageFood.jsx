@@ -139,9 +139,12 @@ const ManageFood = () => {
     {
       name: "",
       selector: (row) => (
-        <button className="bg-blue-300 px-6 py-2 rounded-md text-base font-semibold">
+        <Link
+          to={`/manage/${row.foodId}`}
+          className="bg-blue-300 px-6 py-2 rounded-md text-base font-semibold"
+        >
           Manage
-        </button>
+        </Link>
       ),
     },
   ];

@@ -20,6 +20,7 @@ const SingleFood = () => {
     donorphoto,
     donorname,
     donoremail,
+    foodId
   } = items;
 
   const handleRequest = (e) => {
@@ -48,6 +49,7 @@ const SingleFood = () => {
       expiredtime,
       additionalNotes,
       donationmoney,
+      foodId,
     };
     console.log(addRequestFood);
 
@@ -62,7 +64,7 @@ const SingleFood = () => {
       .then((data) => {
         console.log(data);
         
-        navigate("/");
+        navigate("/availableFood");
         Swal.fire({
           text: "Food Request Successfully",
           icon: "success",
