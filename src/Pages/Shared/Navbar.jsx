@@ -117,7 +117,7 @@ const Navbar = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink to="#" className="text-gray-700 hover:text-[#FF444A]">
+              <NavLink to="/foodRequest" className="text-gray-700 hover:text-[#FF444A]">
                 Food Request
               </NavLink>
             </li>
