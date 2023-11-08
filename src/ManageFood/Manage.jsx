@@ -244,7 +244,7 @@ const Manage = () => {
           </div>
         </div>
       ) : (
-        <p>No data found</p>
+        <p>No request found</p>
       )}
     </div>
   );

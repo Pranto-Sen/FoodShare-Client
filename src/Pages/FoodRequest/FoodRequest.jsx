@@ -15,7 +15,7 @@ const FoodRequest = () => {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/FoodRequest/${email}`)
+    fetch(`http://localhost:5000/FoodRequest/${email}`,{credentials: 'include'})
       .then((res) => res.json())
       .then((data) => setItems(data));
   }, [email]);
