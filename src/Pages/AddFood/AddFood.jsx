@@ -40,13 +40,16 @@ const AddFood = () => {
     };
     console.log(addFood);
 
-    fetch("http://localhost:5000/addFood", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(addFood),
-    })
+    fetch(
+      "https://food-share-server-dfwyot9mj-prantos-projects-ad2c8ed5.vercel.app/addFood",
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(addFood),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

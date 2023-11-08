@@ -16,7 +16,9 @@ const ManageFood = () => {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/manageFood/${email}`)
+    fetch(
+      `https://food-share-server-dfwyot9mj-prantos-projects-ad2c8ed5.vercel.app/manageFood/${email}`
+    )
       .then((res) => res.json())
       .then((data) => setItems(data));
   }, [email]); // Added dependency to the useEffect
@@ -33,22 +35,25 @@ const ManageFood = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.value) {
-        fetch(`http://localhost:5000/food/${id}`, {
-          method: 'DELETE',
-        })
-        .then((res) => res.json())
+        fetch(
+          `https://food-share-server-dfwyot9mj-prantos-projects-ad2c8ed5.vercel.app/food/${id}`,
+          {
+            method: "DELETE",
+          }
+        )
+          .then((res) => res.json())
           .then((data) => {
             if (data.deletedCount > 0) {
-           Swal.fire({
-             text: "Delete Successfully",
-             icon: "success",
-             confirmButtonText: "Done",
-           });
-              const remaining = items.filter(item => item._id !== id);
+              Swal.fire({
+                text: "Delete Successfully",
+                icon: "success",
+                confirmButtonText: "Done",
+              });
+              const remaining = items.filter((item) => item._id !== id);
               setItems(remaining);
-           navigate("/manageFood");
-        }
-      });
+              navigate("/manageFood");
+            }
+          });
         // form.submit();
         console.log(id);
       }

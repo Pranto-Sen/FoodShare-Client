@@ -15,7 +15,10 @@ const FoodRequest = () => {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/FoodRequest/${email}`,{credentials: 'include'})
+    fetch(
+      `https://food-share-server-dfwyot9mj-prantos-projects-ad2c8ed5.vercel.app/FoodRequest/${email}`,
+      { credentials: "include" }
+    )
       .then((res) => res.json())
       .then((data) => setItems(data));
   }, [email]);
@@ -32,9 +35,12 @@ const FoodRequest = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.value) {
-        fetch(`http://localhost:5000/reqfood/${id}`, {
-          method: "DELETE",
-        })
+        fetch(
+          `https://food-share-server-dfwyot9mj-prantos-projects-ad2c8ed5.vercel.app/reqfood/${id}`,
+          {
+            method: "DELETE",
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             if (data.deletedCount > 0) {
