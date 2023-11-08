@@ -4,6 +4,7 @@ import React, { useContext, useState } from "react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
  import Swal from "sweetalert2";
 import { AuthContext } from "../../Providers/AuthProvider";
+import { Helmet } from "react-helmet";
 
 const Login = () => {
   const [loginError, setLoginError] = useState("");
@@ -36,6 +37,11 @@ const Login = () => {
   };
   return (
     <div className="">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>FoodShare | LogIn</title>
+        <link rel="canonical" href="http://mysite.com/example" />
+      </Helmet>
       <section class="flex flex-col md:flex-row h-screen items-center">
         <div
           class="bg-white w-full md:max-w-md lg:max-w-full md:mx-auto  md:w-1/2 h-screen px-6 lg:px-16 xl:px-12

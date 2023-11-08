@@ -5,6 +5,7 @@ import { AuthContext } from "../Providers/AuthProvider";
 import DataTable from "react-data-table-component";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 
 const ManageFood = () => {
   const navigate = useNavigate();
@@ -104,6 +105,11 @@ const ManageFood = () => {
 
   return (
     <div>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>FoodShare | ManageFood</title>
+        <link rel="canonical" href="http://mysite.com/example" />
+      </Helmet>
       <DataTable columns={columns} data={items} />
     </div>
   );

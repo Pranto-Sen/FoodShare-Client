@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import AvailableFoodCard from "./AvailableFoodCard";
+import { Helmet } from "react-helmet";
 
 const AvailableFood = () => {
   const [items, setItems] = useState([]);
@@ -29,6 +30,12 @@ const AvailableFood = () => {
   };
   return (
     <div>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>FoodShare | AvailableFood</title>
+        <link rel="canonical" href="http://mysite.com/example" />
+      </Helmet>
+
       <div class="flex items-center space-x-4">
         {/* <!-- Text input box --> */}
         <form onSubmit={handleSearch}>
@@ -59,23 +66,6 @@ const AvailableFood = () => {
               Sort
             </button>
           </div>
-          {/* <!-- Dropdown content --> */}
-          {/* <div class="absolute right-0 z-10 mt-2 w-40 rounded-md bg-white shadow-lg">
-            <a
-              href="#"
-              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-              role="menuitem"
-            >
-              Large to Small
-            </a>
-            <a
-              href="#"
-              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-              role="menuitem"
-            >
-              Small to Large
-            </a>
-          </div> */}
         </div>
       </div>
 

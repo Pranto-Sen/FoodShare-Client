@@ -6,6 +6,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import DataTable from "react-data-table-component";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 
 const FoodRequest = () => {
   const navigate = useNavigate();
@@ -95,7 +96,11 @@ const FoodRequest = () => {
   ];
   return (
     <div>
-      
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>FoodShare | FoodRequest</title>
+        <link rel="canonical" href="http://mysite.com/example" />
+      </Helmet>
       <DataTable columns={columns} data={items} />
     </div>
   );

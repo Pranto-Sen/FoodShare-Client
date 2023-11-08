@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
+import { Helmet } from "react-helmet";
  
 const AddFood = () => {
   const { user} = useContext(AuthContext);
@@ -60,6 +61,11 @@ const AddFood = () => {
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 ">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>FoodShare | AddFood</title>
+        <link rel="canonical" href="http://mysite.com/example" />
+      </Helmet>
       <form
         onSubmit={handleAddFood}
         className="bg-blue-300 shadow-md px-8 py-8 sm:py-6 lg:py-10 mb-4 rounded-lg"
