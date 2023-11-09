@@ -21,9 +21,6 @@ const AddFood = () => {
     const donoremail = user.email;
     const foodId = Math.floor(Math.random() * Date.now()).toString(16);
 
-      // const imageq = e.target.image.value;
-      // const statusq = e.target.status.value;
-      // const rating = e.target.rating.value;
 
     const addFood = {
       foodname,
