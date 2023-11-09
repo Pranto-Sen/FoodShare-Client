@@ -8,13 +8,13 @@ const Manage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   useEffect(() => {
-    fetch(`http://localhost:5000/manage/${id}`, {
+    fetch(`https://food-share-server-eight.vercel.app/manage/${id}`, {
       method: "GET",
     })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        setItem(data); 
+        setItem(data);
         setIsLoading(false);
       })
       .catch((error) => {
@@ -25,7 +25,7 @@ const Manage = () => {
 
   const handleStatusChange = (id) => {
     console.log(id);
-    fetch(`http://localhost:5000/status/${id}`, {
+    fetch(`https://food-share-server-eight.vercel.app/status/${id}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

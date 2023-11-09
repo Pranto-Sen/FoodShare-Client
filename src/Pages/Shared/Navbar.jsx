@@ -1,21 +1,4 @@
-// import React from 'react';
-
-// const Navbar = () => {
-//     return (
-//         <div>
-//             this is navbar
-//         </div>
-//     );
-// };
-
-// export default Navbar;
-
-
-
-
 import React, { useContext, useState } from "react";
-// import logo from "../images/logo.png";
-// import { AuthContext } from "./Providers/AuthProvider";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 
@@ -95,7 +78,7 @@ const Navbar = () => {
             <li>
               <NavLink
                 to="/availableFood"
-                className="text-gray-700 hover:text-[#FF444A]"
+                className="text-gray-700 hover:text-[#FF444A] "
               >
                 Available Food
               </NavLink>
@@ -122,22 +105,6 @@ const Navbar = () => {
               </NavLink>
             </li>
 
-            {/* <li className="ml-28">
-              <NavLink
-                to="/login"
-                className="text-gray-700 hover:text-[#FF444A]"
-              >
-                Login
-              </NavLink>
-            </li> */}
-            {/* <li>
-              <NavLink
-                to="/register"
-                className="text-gray-700 hover:text-[#FF444A]"
-              >
-                Register
-              </NavLink>
-            </li> */}
             {user ? (
               <button onClick={handleSignOut}>Logout</button>
             ) : (

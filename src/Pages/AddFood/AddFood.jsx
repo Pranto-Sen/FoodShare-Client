@@ -37,7 +37,7 @@ const AddFood = () => {
     };
     console.log(addFood);
 
-    fetch("http://localhost:5000/addFood", {
+    fetch("https://food-share-server-eight.vercel.app/addFood", {
       method: "POST",
       headers: {
         "content-type": "application/json",

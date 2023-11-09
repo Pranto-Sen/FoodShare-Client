@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 
 const SingleFood = () => {
-   const navigate = useNavigate();
+  const navigate = useNavigate();
   const items = useLoaderData();
   const { user, logOut } = useContext(AuthContext);
   const {
@@ -20,13 +20,13 @@ const SingleFood = () => {
     donorphoto,
     donorname,
     donoremail,
-    foodId
+    foodId,
   } = items;
- console.log(items);
+  //  console.log(items);
   const handleRequest = (e) => {
     e.preventDefault();
-     const additionalNotes = e.target.notes.value;
-     const donationmoney = e.target.donationmoney.value;
+    const additionalNotes = e.target.notes.value;
+    const donationmoney = e.target.donationmoney.value;
     const requesterEmail = user.email;
     const requesterName = user.displayName;
     const requesterPhoto = user.photoURL;
@@ -53,7 +53,7 @@ const SingleFood = () => {
     };
     console.log(addRequestFood);
 
-    fetch("http://localhost:5000/requestFood", {
+    fetch("https://food-share-server-eight.vercel.app/requestFood", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -63,7 +63,7 @@ const SingleFood = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        
+
         navigate("/availableFood");
         Swal.fire({
           text: "Food Request Successfully",
@@ -71,8 +71,12 @@ const SingleFood = () => {
           confirmButtonText: "Done",
         });
       });
-  }
-
+  };
+ console.log("Status:", status);
+ console.log("User Email:", user.email);
+ console.log("Donor Email:", donoremail);
+  const isDisabled = (status === "Pending") || (user.email === donoremail);
+  console.log("Is Disabled:", isDisabled);
   return (
     <div className="flex justify-center items-center">
       <div class="w-2/4 bg-blue-100 rounded overflow-hidden shadow-lg mb-8 mr-8  ">
@@ -107,22 +111,40 @@ const SingleFood = () => {
             Served at {foodquantity} People
           </p>
           <div class="text-gray-700 text-base mb-2 flex ">
-            Status : <div className={`font-semibold ml-2 text-green-600 ${status === "Pending" ? "text-red-600":""}`}>{status}</div>{" "}
+            Status :{" "}
+            <div
+              className={`font-semibold ml-2 text-green-600 ${
+                status === "Pending" ? "text-red-600" : ""
+              }`}
+            >
+              {status}
+            </div>{" "}
           </div>
 
           {/* <!-- Expired Date/Time --> */}
           <p class="text-gray-700 text-base mb-2">Expires: {expiredtime} Hr</p>
 
           {/* <!-- Additional Notes --> */}
-          <p class="text-gray-700 text-base mb-6">Notes: {notes}.</p>
+          <p class="text-gray-700 text-base mb-2">Notes: {notes}.</p>
+          <p class=" text-base text-red-600 mb-6">
+            {user.email === donoremail ? "You added this food, so that you can't request": ""}
+          </p>
 
           {/* Modal open when click request button*/}
-          <button
+          {/* <button
             className={`bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded ${
               status === "Pending" ? "pointer-events-none opacity-50" : ""
             }`}
             // class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4  rounded"
             onClick={() => document.getElementById("my_modal_5").showModal()}
+          >
+            Request
+          </button> */}
+
+          <button
+            className={`bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded ${
+              isDisabled ? "pointer-events-none opacity-50" : ""
+            }`}
           >
             Request
           </button>
@@ -204,12 +226,20 @@ const SingleFood = () => {
                     name="donationmoney"
                   ></input>
                 </div>
-                <button
-                  className={`bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded ${
-                    status === "Pending" ? "pointer-events-none opacity-50" : ""
+                {/* <button
+                  className={`bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded 
+                  ${
+                    isDisabled ? "pointer-events-none opacity-50" : ""
                   }`}
                   // to={`/food/${_id}`}
                   // class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4  rounded"
+                >
+                  Request
+                </button> */}
+                <button
+                  className={`bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded ${
+                    isDisabled ? "pointer-events-none opacity-50" : ""
+                  }`}
                 >
                   Request
                 </button>

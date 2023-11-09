@@ -16,7 +16,7 @@ const ManageFood = () => {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/manageFood/${email}`)
+    fetch(`https://food-share-server-eight.vercel.app/manageFood/${email}`)
       .then((res) => res.json())
       .then((data) => setItems(data));
   }, [email]); // Added dependency to the useEffect
@@ -33,7 +33,7 @@ const ManageFood = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.value) {
-        fetch(`http://localhost:5000/food/${id}`, {
+        fetch(`https://food-share-server-eight.vercel.app/food/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())

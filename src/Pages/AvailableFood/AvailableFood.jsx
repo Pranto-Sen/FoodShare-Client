@@ -10,15 +10,19 @@ const AvailableFood = () => {
   const [noDataFound, setNoDataFound] = useState(false);
  
   useEffect(() => {
-    fetch(`http://localhost:5000/food${searchFood ? `/${searchFood}` : ""}`)
+    fetch(
+      `https://food-share-server-eight.vercel.app/food${
+        searchFood ? `/${searchFood}` : ""
+      }`
+    )
       .then((res) => res.json())
       .then((data) => {
         setItems(data);
-        setNoDataFound(data.length === 0); 
+        setNoDataFound(data.length === 0);
       })
       .catch((error) => {
         console.error("Error fetching data: ", error);
-        setNoDataFound(true); 
+        setNoDataFound(true);
       });
   }, [searchFood]);
 
