@@ -71,14 +71,23 @@ const Navbar = () => {
         >
           <ul className="flex flex-col md:flex-row gap-4 md:gap-8 text-xl font-semibold">
             <li>
-              <NavLink to="/" className="text-gray-700 hover:text-[#FF444A]">
+              <NavLink
+                to="/"
+                className={({ isActive, isPending }) =>
+                  isPending ? "pending" : isActive ? "text-[#FF444A]" : ""
+                }
+                // className="text-gray-700 hover:text-[#FF444A]"
+              >
                 Home
               </NavLink>
             </li>
             <li>
               <NavLink
                 to="/availableFood"
-                className="text-gray-700 hover:text-[#FF444A] "
+                className={({ isActive, isPending }) =>
+                  isPending ? "pending" : isActive ? "text-[#FF444A]" : ""
+                }
+                // className="text-gray-700 hover:text-[#FF444A] "
               >
                 Available Food
               </NavLink>
@@ -86,7 +95,10 @@ const Navbar = () => {
             <li>
               <NavLink
                 to="/addFood"
-                className="text-gray-700 hover:text-[#FF444A]"
+                className={({ isActive, isPending }) =>
+                  isPending ? "pending" : isActive ? "text-[#FF444A]" : ""
+                }
+                // className="text-gray-700 hover:text-[#FF444A]"
               >
                 Add Food
               </NavLink>
@@ -94,13 +106,22 @@ const Navbar = () => {
             <li>
               <NavLink
                 to="/manageFood"
-                className="text-gray-700 hover:text-[#FF444A]"
+                className={({ isActive, isPending }) =>
+                  isPending ? "pending" : isActive ? "text-[#FF444A]" : ""
+                }
+                // className="text-gray-700 hover:text-[#FF444A]"
               >
                 Manage Food
               </NavLink>
             </li>
             <li>
-              <NavLink to="/foodRequest" className="text-gray-700 hover:text-[#FF444A]">
+              <NavLink
+                to="/foodRequest"
+                className={({ isActive, isPending }) =>
+                  isPending ? "pending" : isActive ? "text-[#FF444A]" : ""
+                }
+                // className="text-gray-700 hover:text-[#FF444A]"
+              >
                 Food Request
               </NavLink>
             </li>
@@ -112,7 +133,10 @@ const Navbar = () => {
                 <li className="pr-4">
                   <NavLink
                     to="/login"
-                    className="text-gray-700 hover:text-[#FF444A]"
+                    className={({ isActive, isPending }) =>
+                      isPending ? "pending" : isActive ? "text-[#FF444A]" : ""
+                    }
+                    // className="text-gray-700 hover:text-[#FF444A]"
                   >
                     Login
                   </NavLink>
@@ -120,7 +144,10 @@ const Navbar = () => {
                 <li>
                   <NavLink
                     to="/register"
-                    className="text-gray-700 hover:text-[#FF444A]"
+                    className={({ isActive, isPending }) =>
+                      isPending ? "pending" : isActive ? "text-[#FF444A]" : ""
+                    }
+                    // className="text-gray-700 hover:text-[#FF444A]"
                   >
                     Register
                   </NavLink>
