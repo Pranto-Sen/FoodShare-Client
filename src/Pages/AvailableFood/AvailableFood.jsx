@@ -88,16 +88,25 @@ const AvailableFood = () => {
   const [items, setItems] = useState([]);
   const [searchFood, setSearchFood] = useState("");
   const [sortOrder, setSortOrder] = useState(1); // Default ascending sort order
-
+  const [noDataFound, setNoDataFound] = useState(false);
+  
+  // useEffect(() => {
+  //   fetch(`http://localhost:5000/food${searchFood ? `/${searchFood}` : ""}`)
+  //     .then((res) => res.json())
+  //     .then((data) => setItems(data))
+  //     .catch((error) => console.error("Error fetching data: ", error));
+  // }, [searchFood]);
   useEffect(() => {
-    fetch(
-      `https://food-share-server-dfwyot9mj-prantos-projects-ad2c8ed5.vercel.app/food${
-        searchFood ? `/${searchFood}` : ""
-      }`
-    )
+    fetch(`http://localhost:5000/food${searchFood ? `/${searchFood}` : ""}`)
       .then((res) => res.json())
-      .then((data) => setItems(data))
-      .catch((error) => console.error("Error fetching data: ", error));
+      .then((data) => {
+        setItems(data);
+        setNoDataFound(data.length === 0); // Check if data is empty
+      })
+      .catch((error) => {
+        console.error("Error fetching data: ", error);
+        setNoDataFound(true); // Set noDataFound to true in case of an error
+      });
   }, [searchFood]);
 
   const handleSearch = (e) => {
@@ -154,9 +163,16 @@ const AvailableFood = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-16 mb-4">
-        {items.map((item, index) => (
+        {/* {items.map((item, index) => (
           <AvailableFoodCard key={index} item={item}></AvailableFoodCard>
-        ))}
+        ))} */}
+        {noDataFound ? ( // Check if no data found
+          <p className="text-center text-xl font-semibold">No items found.</p> // Message displayed when no data is found
+        ) : (
+          items.map((item, index) => (
+            <AvailableFoodCard key={index} item={item}></AvailableFoodCard>
+          ))
+        )}
       </div>
     </div>
   );

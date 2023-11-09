@@ -22,7 +22,7 @@ const SingleFood = () => {
     donoremail,
     foodId
   } = items;
-
+ console.log(items);
   const handleRequest = (e) => {
     e.preventDefault();
      const additionalNotes = e.target.notes.value;

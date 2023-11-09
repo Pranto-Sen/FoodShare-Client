@@ -15,10 +15,7 @@ const FoodRequest = () => {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    fetch(
-      `https://food-share-server-dfwyot9mj-prantos-projects-ad2c8ed5.vercel.app/FoodRequest/${email}`,
-      { credentials: "include" }
-    )
+    fetch(`http://localhost:5000/foodRequest/${email}`)
       .then((res) => res.json())
       .then((data) => setItems(data));
   }, [email]);
@@ -35,12 +32,9 @@ const FoodRequest = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.value) {
-        fetch(
-          `https://food-share-server-dfwyot9mj-prantos-projects-ad2c8ed5.vercel.app/reqfood/${id}`,
-          {
-            method: "DELETE",
-          }
-        )
+        fetch(`http://localhost:5000/reqfood/${id}`, {
+          method: "DELETE",
+        })
           .then((res) => res.json())
           .then((data) => {
             if (data.deletedCount > 0) {
@@ -75,13 +69,18 @@ const FoodRequest = () => {
     },
     {
       name: <div className="text-xl">Donation Amount </div>,
-      cell: (row) => <div className="text-lg ">{row.donationmoney}</div>,
+      cell: (row) => (
+        <div className="text-lg ">
+          {row.donationmoney}
+        </div>
+      ),
     },
+
     {
       name: <div className="text-xl">Status </div>,
       cell: (row) => <div className="text-lg ">{row.status}</div>,
     },
-   
+
     {
       name: "",
       selector: (row) => (
@@ -98,7 +97,6 @@ const FoodRequest = () => {
         </button>
       ),
     },
-   
   ];
   return (
     <div>

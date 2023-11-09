@@ -23,10 +23,7 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
-        loader: () =>
-          fetch(
-            "https://food-share-server-dfwyot9mj-prantos-projects-ad2c8ed5.vercel.app/food"
-          ),
+        loader: () => fetch("http://localhost:5000/food"),
       },
       {
         path: "/login",
@@ -60,9 +57,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(
-            `https://food-share-server-dfwyot9mj-prantos-projects-ad2c8ed5.vercel.app/foodDetails/${params.id}`
-          ),
+          fetch(`http://localhost:5000/foodDetails/${params.id}`),
       },
       {
         path: "/updateFood/:id",
@@ -72,9 +67,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(
-            `https://food-share-server-dfwyot9mj-prantos-projects-ad2c8ed5.vercel.app/foodDetails/${params.id}`
-          ),
+          fetch(`http://localhost:5000/foodDetails/${params.id}`),
       },
       {
         path: "/manageFood",

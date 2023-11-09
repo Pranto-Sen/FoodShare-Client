@@ -43,16 +43,13 @@ const UpdateFood = () => {
         };
         console.log(updateFood);
 
-         fetch(
-           `https://food-share-server-dfwyot9mj-prantos-projects-ad2c8ed5.vercel.app/updateFood/${_id}`,
-           {
-             method: "PUT",
-             headers: {
-               "Content-Type": "application/json",
-             },
-             body: JSON.stringify(updateFood),
-           }
-         )
+         fetch(`http://localhost:5000/updateFood/${_id}`, {
+           method: "PUT",
+           headers: {
+             "Content-Type": "application/json",
+           },
+           body: JSON.stringify(updateFood),
+         })
            .then((res) => res.json())
            .then((data) => {
              console.log(data);

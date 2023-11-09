@@ -166,12 +166,9 @@ const Manage = () => {
   //   console.log(id);
 
   useEffect(() => {
-    fetch(
-      `https://food-share-server-dfwyot9mj-prantos-projects-ad2c8ed5.vercel.app/manage/${id}`,
-      {
-        method: "GET",
-      }
-    )
+    fetch(`http://localhost:5000/manage/${id}`, {
+      method: "GET",
+    })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -186,16 +183,13 @@ const Manage = () => {
 
   const handleStatusChange = (id) => {
     console.log(id);
-    fetch(
-      `https://food-share-server-dfwyot9mj-prantos-projects-ad2c8ed5.vercel.app/status/${id}`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        // body: JSON.stringify(updateFood),
-      }
-    )
+    fetch(`http://localhost:5000/status/${id}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      // body: JSON.stringify(updateFood),
+    })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
