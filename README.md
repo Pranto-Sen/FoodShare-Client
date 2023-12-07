@@ -1,6 +1,3 @@
-Live link: https://super-axolotl-715762.netlify.app/
-
-
 # User-Friendly Dashboard:
 Implement an intuitive and user-friendly dashboard where food donors can easily navigate through the available features. Provide clear and attractive buttons or menus for "Available Foods Page," "Single Food Details," "Add a Food," "Manage My Foods," "Manage Single Food," and "My Food Request." A well-organized dashboard enhances user experience and makes it easier for donors to find the information they need.
 
