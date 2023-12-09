@@ -14,4 +14,4 @@ Develop a "My Food Request" feature where individuals or organizations in need c
 Implement a secure user authentication system to protect donor and requester information. Utilize encryption methods to safeguard sensitive data, including login credentials and personal details. Implement user roles and permissions to ensure that only authorized individuals can add, edit, or remove
 
 
-Live link: https://super-axolotl-715762.netlify.app/
+## Technology use: ``` React js, Expressjs, Tailwind, MongoDB ```
